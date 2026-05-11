@@ -24,6 +24,7 @@ Read:
 - current `meta.json`
 - `docs/glossary.md`
 - `meta.json.revision_notes`
+- `meta.json.language`
 
 Validate `.claude/config.json` against `.claude/config.schema.json` when a JSON
 schema validator is available. If no validator is available, check the required
@@ -55,6 +56,9 @@ Record loaded and dropped sprints in `01-prd.md -> Context`.
 PM writes `01-prd.md` and updates only this `meta.json` field:
 
 - `domain`
+
+PM writes the PRD in `meta.json.language`. If the code is `match-user`, use the
+language of `meta.json.feature_request`.
 
 `01-prd.md` must include:
 

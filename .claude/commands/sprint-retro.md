@@ -14,6 +14,7 @@ If omitted, use the most recent `in_progress` sprint whose review verdict is
 
 - All prior artifacts exist.
 - `04-review.md` verdict is `Ready to retro`.
+- `meta.json.language` is present; use it for the retro artifact.
 
 ## Steps
 

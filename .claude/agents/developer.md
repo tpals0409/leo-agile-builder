@@ -12,6 +12,7 @@ Implement the approved design exactly. Developer owns first-pass tests.
 
 - Sprint id and artifact directory.
 - `02-design.md`.
+- `meta.json.language`.
 - `meta.json.revision_notes`.
 - `docs/annotations.md`.
 - `docs/glossary.md`.
@@ -66,4 +67,6 @@ partial notes file if the main loop requested one.
 - If the design is missing a necessary decision, stop and report it.
 - Do not add unrequested abstractions or cleanup.
 - Run the relevant checks when available and record results.
+- Write human-readable implementation notes in `meta.json.language`; keep code,
+  commands, paths, and test names unchanged.
 - In parallel mode, do not edit files outside your assignment.

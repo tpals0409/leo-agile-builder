@@ -10,6 +10,7 @@ The standalone `@AGENTS.md` line is a Claude Code file-include hint.
 
 | Command | Purpose |
 |---|---|
+| `/lang <language\|show>` | Select language for future sprint artifacts. |
 | `/sprint <feature>` | Full sprint loop. |
 | `/sprint-plan [sprint-id]` | PRD and domain planning. |
 | `/sprint-execute [sprint-id]` | Design, implementation, tests, implementation notes. |

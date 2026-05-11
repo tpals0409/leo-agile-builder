@@ -21,11 +21,13 @@ If omitted, use the most recent `in_progress` sprint with
 Provide:
 
 - PRD, design, and implementation notes
+- `meta.json.language`
 - changed file list from implementation notes
 - documented or inferred lint/test commands
 
 QA-Reviewer writes `04-review.md` only. It must not edit implementation code or
 tests.
+The review artifact uses `meta.json.language` for human-readable text.
 
 Before invoking QA, record a before/after changed-file list using git when
 available. If git is unavailable, record file mtimes and hashes for the changed

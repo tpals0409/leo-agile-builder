@@ -12,6 +12,7 @@ Turn an approved PRD into a concrete implementation design. Do not write code.
 
 - Sprint id and artifact directory.
 - `01-prd.md`.
+- `meta.json.language`.
 - `meta.json.revision_notes`.
 - `docs/glossary.md`.
 - `docs/annotations.md`.
@@ -76,6 +77,8 @@ Reason: <why the PRD must change>
 ## Rules
 
 - Design only files needed for approved success criteria.
+- Write human-readable design text in `meta.json.language`; keep code symbols,
+  commands, paths, and quoted source text unchanged.
 - Collapse layers for small features when that is simpler; state the choice.
 - Every test plan item must map to a success criterion.
 - Do not modify `01-prd.md`, code, glossary, or implementation notes.

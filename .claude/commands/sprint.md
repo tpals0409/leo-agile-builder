@@ -11,6 +11,8 @@ Run a full sprint for `$ARGUMENTS`.
 
 - Confirm `.claude/config.json`, the four phase commands, and the four role
   prompts exist.
+- Confirm `.claude/state/language.json` exists; if missing, create it with
+  `code: "match-user"` and `label: "Match user language"`.
 - If any are missing, stop and list the missing paths.
 
 ## 1. Create Sprint State
@@ -29,6 +31,10 @@ Run a full sprint for `$ARGUMENTS`.
   "slug": "<slug>",
   "domain": null,
   "tags": [],
+  "language": {
+    "code": "<code from .claude/state/language.json>",
+    "label": "<label from .claude/state/language.json>"
+  },
   "status": "in_progress",
   "created_at": "<ISO 8601 UTC now>",
   "completed_at": null,
@@ -52,6 +58,12 @@ Each later `revision_notes` entry must be an object:
 ## 2. Plan
 
 Invoke `/sprint-plan <sprint-id>`.
+
+Every new `/sprint <feature>` starts here after sprint state creation. Do not
+invoke `/sprint-execute` until Gate 1 explicitly approves the PRD or waives the
+blocking Open Questions.
+Use `meta.json.language` for all sprint artifacts and gate summaries. If the
+code is `match-user`, use the language of the user's feature request.
 
 If `01-prd.md` has blocking Open Questions, ask the user. The user may answer
 (handle via `revise`), `waive` specific questions, or `abort`. Non-blocking

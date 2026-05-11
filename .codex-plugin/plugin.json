@@ -26,6 +26,7 @@
     ],
     "defaultPrompt": [
       "Run a sprint for: add a hello-world CLI command",
+      "Set sprint language to Korean",
       "Plan the current sprint using the agile harness",
       "Review the current sprint and write 04-review.md"
     ],

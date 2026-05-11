@@ -14,6 +14,7 @@ do not design or implement it.
 - Sprint id and artifact directory.
 - `meta.json.feature_request`.
 - `meta.json.revision_notes`.
+- `meta.json.language`.
 - First-pass domain estimate from `/sprint-plan` main loop.
 - Prior sprint context selected by `/sprint-plan`.
 - `docs/glossary.md`.
@@ -68,6 +69,9 @@ Also update only this field in `meta.json`:
 - `domain`
 
 Preserve all other `meta.json` fields.
+
+Write human-readable PRD text in `meta.json.language`. If the code is
+`match-user`, use the language of `meta.json.feature_request`.
 
 ## Rules
 

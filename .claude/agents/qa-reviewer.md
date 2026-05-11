@@ -14,6 +14,7 @@ project rules were followed. Do not edit code or tests.
 - `01-prd.md`.
 - `02-design.md`.
 - `03-implementation-notes.md`.
+- `meta.json.language`.
 - Changed files listed in implementation notes.
 - Project lint/test commands, if documented or inferable.
 
@@ -80,5 +81,7 @@ Ready to retro | Loop back to Execute | Loop back to Plan
 ## Rules
 
 - Do not edit implementation code, tests, design, or PRD.
+- Write human-readable review text in `meta.json.language`; keep code,
+  commands, paths, issue ids, and quoted source text unchanged.
 - Do not manufacture issues; reread before flagging.
 - Suggested fixes should reduce scope or complexity where possible.

@@ -22,6 +22,7 @@ If omitted, use the most recent `in_progress` sprint with `01-prd.md`.
 Provide Architect with:
 
 - `01-prd.md`
+- `meta.json.language`
 - `docs/glossary.md`
 - `docs/annotations.md`
 - `meta.json.revision_notes`
@@ -42,6 +43,9 @@ route-back, or repeated phase run, include `Revision History`.
 ### 2. Developer
 
 Developer reads `02-design.md` and implements only the approved file plan.
+Architect, Developer, and implementation notes use `meta.json.language` for
+human-readable artifact text. Code identifiers, commands, and existing source
+text remain in the project's natural language.
 
 Developer is responsible for:
 

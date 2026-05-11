@@ -92,12 +92,25 @@ Each project chooses its own stack. The template only requires:
 
 See `docs/CONVENTIONS.md`.
 
+### Rule 5. Sprint Artifact Language
+
+`/lang <language>` sets the project default artifact language in
+`.claude/state/language.json`. New sprints copy that value into
+`meta.json.language` during sprint creation. All human-readable sprint artifacts
+and gate summaries must use `meta.json.language`; code identifiers, commands,
+paths, and quoted source text remain unchanged. If the code is `match-user`, use
+the language of `meta.json.feature_request`.
+
 ---
 
 ## 3. Sprint Workflow
 
 Triggered by `/sprint <feature description>` in Claude Code, or by asking Codex
 to run a sprint.
+
+After creating sprint state, every sprint starts in the Plan phase and must stop
+at Gate 1 before execution unless the user explicitly approves or waives the PRD
+gate.
 
 1. `/sprint-plan` creates or updates `01-prd.md`.
    - Gate: user approves, revises, or aborts the PRD.
@@ -143,7 +156,7 @@ Loop-backs keep `meta.json.status` as `in_progress`.
 | Architect | approved PRD, glossary, annotations, relevant files, review feedback if any | `02-design.md` |
 | Developer | approved design, referenced files, glossary, annotations | code, tests, `docs/glossary.md`, `03-implementation-notes.md` |
 | QA-Reviewer | PRD, design, implementation notes, changed files | `04-review.md` only |
-| Main loop | all artifacts | `05-retro.md`; `meta.json.status`; `meta.json.completed_at`; `meta.json.tags`; `meta.json.revision_notes` |
+| Main loop | all artifacts | initial `meta.json`; `05-retro.md`; `meta.json.status`; `meta.json.completed_at`; `meta.json.tags`; `meta.json.revision_notes` |
 
 QA-Reviewer must not edit implementation code or tests. Missing tests for
 approved success criteria are blocking. Optional follow-up tests are non-blocking
@@ -176,6 +189,10 @@ Each sprint directory has this shape:
   "slug": "add-login",
   "domain": "auth",
   "tags": [],
+  "language": {
+    "code": "ko",
+    "label": "Korean"
+  },
   "status": "in_progress",
   "created_at": "2026-05-11T10:00:00Z",
   "completed_at": null,
@@ -194,6 +211,8 @@ Allowed `status` values:
 the primary `domain`, and is finalized by the main loop during retro. Sprint
 numbers may skip when a sprint is aborted; the next sprint id is still one more
 than the highest existing sprint number.
+`language` is copied from `.claude/state/language.json` at sprint creation and
+does not change unless the user explicitly revises that sprint's metadata.
 `revision_notes` remains in `meta.json` after completion for auditability.
 
 Review issues must include stable ids, for example

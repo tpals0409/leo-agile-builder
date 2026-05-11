@@ -13,6 +13,11 @@ INPUT
 DONE
 ```
 
+`/sprint <feature>` creates sprint state first, then enters PLAN. It must not
+enter EXECUTE until Gate 1 approves or waives the PRD gate.
+The sprint copies `.claude/state/language.json` into `meta.json.language`; all
+phase artifacts use that language for human-readable text.
+
 ## Phases
 
 | Phase | Command | Owner | Output |
