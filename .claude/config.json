@@ -1,0 +1,25 @@
+{
+  "$schema": "./config.schema.json",
+  "sprintHistory": {
+    "recentCount": 3,
+    "tokenBudget": 8000,
+    "alwaysIncludeDomains": []
+  },
+  "roles": {
+    "pm": ".claude/agents/pm.md",
+    "architect": ".claude/agents/architect.md",
+    "developer": ".claude/agents/developer.md",
+    "qa-reviewer": ".claude/agents/qa-reviewer.md"
+  },
+  "artifacts": {
+    "sprintsDir": ".claude/state/sprints",
+    "files": {
+      "prd": "01-prd.md",
+      "design": "02-design.md",
+      "implementation": "03-implementation-notes.md",
+      "review": "04-review.md",
+      "retro": "05-retro.md",
+      "meta": "meta.json"
+    }
+  }
+}

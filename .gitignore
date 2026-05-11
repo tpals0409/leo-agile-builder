@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Sprint artifacts are committed by default — they serve as project memory
+# that the sliding-window context loader reads. If you prefer to keep them
+# as local scratch only, uncomment the following line:
+# .claude/state/sprints/
+
+# Local-only Claude state (per-machine settings, caches)
+.claude/cache/
+.claude/local/

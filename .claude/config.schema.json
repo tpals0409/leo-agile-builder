@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "leo-agaile-builder configuration",
+  "type": "object",
+  "required": ["sprintHistory", "roles", "artifacts"],
+  "properties": {
+    "sprintHistory": {
+      "type": "object",
+      "required": ["recentCount", "tokenBudget", "alwaysIncludeDomains"],
+      "properties": {
+        "recentCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tokenBudget": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "alwaysIncludeDomains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["sprintsDir", "files"],
+      "properties": {
+        "sprintsDir": {
+          "type": "string"
+        },
+        "files": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

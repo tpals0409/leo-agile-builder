@@ -1,0 +1,34 @@
+{
+  "name": "leo-agaile-builder",
+  "version": "1.0.0",
+  "description": "Agile-inspired multi-agent sprint harness for Codex and Claude Code.",
+  "author": {
+    "name": "leo-agaile-builder"
+  },
+  "license": "MIT",
+  "keywords": [
+    "agile",
+    "agents",
+    "codex",
+    "claude-code",
+    "sprint",
+    "workflow"
+  ],
+  "interface": {
+    "displayName": "Leo Agile Builder",
+    "shortDescription": "Run PRD, design, implementation, review, and retro sprint loops.",
+    "longDescription": "A tool-neutral Agile workflow harness with role-scoped agent prompts, sprint artifacts, DDD rules, file annotations, and sliding-window project memory.",
+    "developerName": "leo-agaile-builder",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Run a sprint for: add a hello-world CLI command",
+      "Plan the current sprint using the agile harness",
+      "Review the current sprint and write 04-review.md"
+    ],
+    "brandColor": "#2563EB"
+  }
+}
