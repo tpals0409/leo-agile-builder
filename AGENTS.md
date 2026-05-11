@@ -1,7 +1,7 @@
 # AGENTS.md — Project Rules for AI Coding Agents
 
 This file defines the rules, workflow, and artifact contracts for projects built
-with **leo-agaile-builder**. `CLAUDE.md`, `CODEX.md`, role prompts, and command
+with **leo-agile-builder**. `CLAUDE.md`, `CODEX.md`, role prompts, and command
 adapters must defer to this file when contracts overlap.
 
 ---

@@ -1,9 +1,9 @@
 {
-  "name": "leo-agaile-builder",
+  "name": "leo-agile-builder",
   "version": "1.0.0",
   "description": "Agile-inspired multi-agent sprint harness for Codex and Claude Code.",
   "author": {
-    "name": "leo-agaile-builder"
+    "name": "leo-agile-builder"
   },
   "license": "MIT",
   "keywords": [
@@ -18,7 +18,7 @@
     "displayName": "Leo Agile Builder",
     "shortDescription": "Run PRD, design, implementation, review, and retro sprint loops.",
     "longDescription": "A tool-neutral Agile workflow harness with role-scoped agent prompts, sprint artifacts, DDD rules, file annotations, and sliding-window project memory.",
-    "developerName": "leo-agaile-builder",
+    "developerName": "leo-agile-builder",
     "category": "Productivity",
     "capabilities": [
       "Interactive",

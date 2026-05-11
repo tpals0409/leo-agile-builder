@@ -1,4 +1,4 @@
-# leo-agaile-builder
+# leo-agile-builder
 
 Agile-style multi-agent sprint template for Claude Code and Codex.
 

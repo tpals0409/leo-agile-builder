@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "leo-agaile-builder configuration",
+  "title": "leo-agile-builder configuration",
   "type": "object",
   "required": ["sprintHistory", "roles", "artifacts"],
   "properties": {
