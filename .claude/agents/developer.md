@@ -2,6 +2,7 @@
 name: developer
 description: Developer agent. Implements 02-design.md, writes tests, updates glossary, and records implementation notes.
 tools: Read, Write, Edit, Grep, Glob, Bash
+isolation: worktree
 ---
 
 # Developer Agent
@@ -58,9 +59,14 @@ Write `.claude/state/sprints/<sprint-id>/03-implementation-notes.md`:
 - `<command>` -> <result>
 ```
 
-In parallel mode, do not write the canonical `03-implementation-notes.md`.
-Return notes for your assigned file set, or write only an assignment-scoped
-partial notes file if the main loop requested one.
+In parallel mode (when `02-design.md` contains a `## Work Packages` section
+and you were dispatched for a specific package `WP-k`), do not write the
+canonical `03-implementation-notes.md`. Instead, write your assignment-scoped
+partial notes to
+`.claude/state/sprints/<sprint-id>/03-impl-WP-k.md` using the same template
+above. Limit your edits to the package's `Files:` set; touching any file
+outside it is a blocking violation. The main loop merges all partial files
+into the canonical `03-implementation-notes.md`.
 
 ## Rules
 

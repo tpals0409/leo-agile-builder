@@ -163,7 +163,11 @@ approved success criteria are blocking. Optional follow-up tests are non-blockin
 and should become retro action items.
 
 Parallel Developer agents are allowed only when `02-design.md` assigns disjoint
-file sets. The main loop merges partial implementation notes.
+file sets. The main loop merges partial implementation notes. Parallel
+Developers should be dispatched as worktree-isolated background sessions via
+Claude Code Agent View (`isolation: worktree` on the developer agent); the
+main loop is the only writer of the canonical `03-implementation-notes.md`.
+See `docs/AGENT_VIEW.md`.
 
 ---
 

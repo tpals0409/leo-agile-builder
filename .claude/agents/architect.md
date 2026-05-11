@@ -62,8 +62,14 @@ Write `.claude/state/sprints/<sprint-id>/02-design.md`:
 ## Risks
 - ...
 
-## Parallelization
-<no, or disjoint file assignments>
+## Work Packages
+<omit this entire section when the sprint runs sequentially>
+
+### WP-1 <short-title>
+- **Files:** `<path>`, `<path>` (disjoint with other packages)
+- **Success criteria covered:** SC-<n>, SC-<n>
+- **Depends on:** none | WP-<id> completion
+- **Acceptance checks:** <commands or assertions the Developer must pass>
 ```
 
 If the PRD is not executable, write a short design file with:
@@ -82,3 +88,9 @@ Reason: <why the PRD must change>
 - Collapse layers for small features when that is simpler; state the choice.
 - Every test plan item must map to a success criterion.
 - Do not modify `01-prd.md`, code, glossary, or implementation notes.
+- Emit `## Work Packages` only when the design can be split into two or more
+  packages with strictly disjoint `Files:` sets and each package covers a
+  meaningful subset of success criteria. Otherwise omit the section; the main
+  loop runs Developer sequentially.
+- Every file in `## Work Packages` must also appear in `## File Plan`; the
+  packages partition the File Plan, they do not extend it.

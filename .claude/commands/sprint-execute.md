@@ -54,13 +54,47 @@ Developer is responsible for:
 - approved `docs/glossary.md` additions
 - `03-implementation-notes.md`
 
-If the design allows parallel Developer agents, the main loop assigns disjoint
-file sets. Parallel Developers must not write the canonical
-`03-implementation-notes.md`; they return or write assignment-scoped partial
-notes for the main loop to merge into one `03-implementation-notes.md`.
-
 When overwriting existing notes because of a gate revision, route-back, or
 repeated phase run, include `Revision History`.
+
+#### Parallel Developer dispatch
+
+If `02-design.md` has no `## Work Packages` section, run Developer once,
+sequentially. Default and unchanged.
+
+If `02-design.md` has `## Work Packages`, the main loop dispatches one
+background Developer session per package and merges their partial notes:
+
+1. For each `WP-k` in topological order honoring `Depends on:`, dispatch a
+   background Developer session named `<sprint-id>/WP-k`. With Claude Code
+   Agent View this is `claude --agent developer --bg "<brief>"` or, from
+   `claude agents`, `developer <brief>`. The Developer agent's
+   `isolation: worktree` frontmatter makes each session run in its own
+   `.claude/worktrees/<id>/` checkout, so parallel sessions cannot stomp on
+   each other's files.
+2. The brief must include: the sprint id, the absolute path to `02-design.md`,
+   the package's `Files:` set, the covered success criteria, the
+   `Acceptance checks:`, and the partial notes path
+   `.claude/state/sprints/<sprint-id>/03-impl-WP-k.md`.
+3. Sessions that share no dependency edge run concurrently. Sessions with
+   `Depends on:` an unfinished package wait until that package's session
+   reaches `Completed`.
+4. The main loop watches each session through `claude agents` (or
+   `claude logs <id>` from the shell), answering `Needs input` rows.
+5. When every WP session reaches `Completed`, the main loop merges all
+   `03-impl-WP-k.md` files into the canonical
+   `.claude/state/sprints/<sprint-id>/03-implementation-notes.md`:
+   - `Files changed` lists are unioned and deduplicated.
+   - `Tests added` and `Verification performed` are unioned.
+   - `Deviations from design` and `TODOs left open` are concatenated with the
+     emitting `WP-k` prefixed to each entry.
+   - The canonical notes file is the only writer of
+     `03-implementation-notes.md`; partial files stay on disk for traceability.
+6. The main loop then merges each worktree's changes back into the main
+   checkout. The recipe and sharp edges live in `docs/AGENT_VIEW.md`.
+7. If any WP session ends in `Failed`, edits files outside its package's
+   `Files:` set, or skips a declared `Acceptance check:`, treat it as the
+   existing "Developer edits files outside its assignment" violation and stop.
 
 ### 3. Hand Back
 

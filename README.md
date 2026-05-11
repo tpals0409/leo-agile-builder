@@ -55,6 +55,7 @@ sprint 실행: hello-world CLI 명령 추가
 | 슬라이딩 윈도우 정책 | `.claude/config.json` |
 | 어노테이션 필드 | `docs/annotations.md` |
 | 도메인 용어 | `docs/glossary.md` |
+| 병렬 Developer 세션으로 Execute 실행 (Claude Code 전용) | `docs/AGENT_VIEW.md` |
 
 ---
 
@@ -104,6 +105,7 @@ PRD approval gate is approved or explicitly waived.
 | Sliding-window policy | `.claude/config.json` |
 | Annotation fields | `docs/annotations.md` |
 | Domain vocabulary | `docs/glossary.md` |
+| Run Execute as parallel Developer sessions (Claude Code only) | `docs/AGENT_VIEW.md` |
 
 ---
 

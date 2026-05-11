@@ -2,6 +2,7 @@
 name: qa-reviewer
 description: QA and code reviewer agent. Writes 04-review.md without modifying code or tests.
 tools: Read, Write, Grep, Glob, Bash
+isolation: worktree
 ---
 
 # QA-Reviewer Agent

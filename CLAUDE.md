@@ -16,3 +16,4 @@ The standalone `@AGENTS.md` line is a Claude Code file-include hint.
 | `/sprint-execute [sprint-id]` | Design, implementation, tests, implementation notes. |
 | `/sprint-review [sprint-id]` | QA review without code edits. |
 | `/sprint-retro [sprint-id]` | Retro and `meta.json` finalization. |
+| `claude agents` / `claude --bg "<prompt>"` | Optional parallel runtime. Run Execute as parallel Developer sessions or run `/sprint` itself in the background. See `docs/AGENT_VIEW.md`. |
