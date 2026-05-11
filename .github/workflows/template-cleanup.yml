@@ -1,0 +1,39 @@
+name: Template cleanup
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  cleanup:
+    if: github.event.repository.is_template == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Replace README with project stub
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          cat > README.md <<EOF
+          # ${REPO_NAME}
+
+          TODO: project description.
+          EOF
+
+      - name: Remove this workflow
+        run: |
+          git rm .github/workflows/template-cleanup.yml
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "chore: template cleanup"
+          git push
