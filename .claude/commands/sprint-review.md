@@ -25,8 +25,10 @@ Provide:
 - changed file list from implementation notes
 - documented or inferred lint/test commands
 
-QA-Reviewer writes `04-review.md` only. It must not edit implementation code or
-tests.
+QA-Reviewer writes `04-review.md` only in the main checkout. It must not edit
+implementation code or tests. Do not run QA-Reviewer in worktree isolation
+unless the main loop explicitly merges the resulting `04-review.md` back before
+reading the verdict.
 The review artifact uses `meta.json.language` for human-readable text.
 
 Before invoking QA, record a before/after changed-file list using git when

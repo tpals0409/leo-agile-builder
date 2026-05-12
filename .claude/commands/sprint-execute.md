@@ -13,7 +13,8 @@ If omitted, use the most recent `in_progress` sprint with `01-prd.md`.
 
 - `01-prd.md` exists.
 - `01-prd.md` has no blocking Open Questions unless `meta.json.revision_notes`
-  contains an entry with `action: "waive_open_question"` for that question.
+  contains an entry with `action: "waive_open_question"` for each blocking
+  question id.
 
 ## Steps
 
@@ -62,8 +63,19 @@ repeated phase run, include `Revision History`.
 If `02-design.md` has no `## Work Packages` section, run Developer once,
 sequentially. Default and unchanged.
 
-If `02-design.md` has `## Work Packages`, the main loop dispatches one
-background Developer session per package and merges their partial notes:
+If `02-design.md` has `## Work Packages` and Claude Code Agent View is
+available, the main loop dispatches one background Developer session per package
+and merges their partial notes.
+
+If Agent View is unavailable, including Codex, run the packages sequentially in
+topological order with a single Developer. The Developer still respects each
+package's `Files:` set, `Depends on:`, and `Acceptance checks:`. In this mode
+the Developer may either write package-scoped partial notes for the main loop to
+merge or write the canonical `03-implementation-notes.md` directly after all
+packages are complete. Do not dispatch background sessions outside Claude Code
+Agent View.
+
+Agent View dispatch:
 
 1. For each `WP-k` in topological order honoring `Depends on:`, dispatch a
    background Developer session named `<sprint-id>/WP-k`. With Claude Code

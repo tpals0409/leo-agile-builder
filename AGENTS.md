@@ -203,7 +203,8 @@ Each sprint directory has this shape:
   "created_at": "2026-05-11T10:00:00Z",
   "completed_at": null,
   "feature_request": "<verbatim user input>",
-  "revision_notes": []
+  "revision_notes": [],
+  "review_issue_counts": {}
 }
 ```
 
@@ -220,6 +221,9 @@ than the highest existing sprint number.
 `language` is copied from `.claude/state/language.json` at sprint creation and
 does not change unless the user explicitly revises that sprint's metadata.
 `revision_notes` remains in `meta.json` after completion for auditability.
+`review_issue_counts` maps blocking review issue ids to consecutive occurrence
+counts during review loops, for example `{ "ISSUE-001-missing-login-test": 2 }`.
+It resets after user revision, route-back to Plan, abort, or a new sprint.
 
 Review issues must include stable ids, for example
 `ISSUE-001-missing-login-test`, so repeated blocking issues can be counted
@@ -227,6 +231,11 @@ across review loops. QA assigns issue ids monotonically within a sprint and
 keeps the same id for the same underlying defect across review loops. The
 repeated-issue counter resets after user revision, route-back to Plan, abort, or
 a new sprint.
+
+Blocking Open Questions must also include stable sprint-scoped ids, for example
+`Q-001-auth-provider`. Gate waivers record the question id in
+`revision_notes.note` so execution can prove that a specific blocking question
+was waived even if the wording changes later.
 
 ---
 

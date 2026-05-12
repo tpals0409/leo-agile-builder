@@ -39,7 +39,8 @@ Run a full sprint for `$ARGUMENTS`.
   "created_at": "<ISO 8601 UTC now>",
   "completed_at": null,
   "feature_request": "<verbatim $ARGUMENTS>",
-  "revision_notes": []
+  "revision_notes": [],
+  "review_issue_counts": {}
 }
 ```
 
@@ -65,8 +66,9 @@ blocking Open Questions.
 Use `meta.json.language` for all sprint artifacts and gate summaries. If the
 code is `match-user`, use the language of the user's feature request.
 
-If `01-prd.md` has blocking Open Questions, ask the user. The user may answer
-(handle via `revise`), `waive` specific questions, or `abort`. Non-blocking
+If `01-prd.md` has blocking Open Questions, ask the user. Each blocking question
+must have a stable id such as `Q-001-auth-provider`. The user may answer (handle
+via `revise`), `waive` specific question ids, or `abort`. Non-blocking
 questions may remain if explicitly marked as deferred.
 
 Gate 1:
@@ -75,12 +77,12 @@ Gate 1:
 - Ask: `Approve PRD and proceed? (yes / revise / waive / abort)`
 - `yes`: continue.
 - `revise`: append a `revision_notes` entry with `phase: "plan"`,
-  `source: "gate"`, and `action: "revise"`, reset repeated-issue counters, then
-  rerun `/sprint-plan <sprint-id>`.
+  `source: "gate"`, and `action: "revise"`, clear
+  `meta.json.review_issue_counts`, then rerun `/sprint-plan <sprint-id>`.
 - `waive`: for each blocking Open Question the user chose to skip, append a
   `revision_notes` entry with `phase: "plan"`, `source: "gate"`,
-  `action: "waive_open_question"`, and the question text in `note`. Then
-  continue.
+  `action: "waive_open_question"`, and the question id plus question text in
+  `note`. Then continue.
 - `abort`: set `status` to `aborted`, then stop.
 
 ## 3. Execute
@@ -89,7 +91,7 @@ Invoke `/sprint-execute <sprint-id>`.
 
 If `02-design.md` contains `ROUTE_BACK: plan`, show the reason, append a
 `revision_notes` entry with `phase: "execute"`, `source: "architect"`, and
-`action: "route_back"`, reset repeated-issue counters, and rerun
+`action: "route_back"`, clear `meta.json.review_issue_counts`, and rerun
 `/sprint-plan <sprint-id>`.
 
 Gate 2:
@@ -99,8 +101,8 @@ Gate 2:
 - Ask: `Approve implementation and proceed? (yes / revise / abort)`
 - `yes`: continue.
 - `revise`: append a `revision_notes` entry with `phase: "execute"`,
-  `source: "gate"`, and `action: "revise"`, reset repeated-issue counters, then
-  rerun `/sprint-execute <sprint-id>`.
+  `source: "gate"`, and `action: "revise"`, clear
+  `meta.json.review_issue_counts`, then rerun `/sprint-execute <sprint-id>`.
 - `abort`: set `status` to `aborted`, then stop.
 
 ## 4. Review
@@ -113,14 +115,17 @@ Read `04-review.md -> Verdict`:
 - `Loop back to Execute`: print blocking issue ids and rerun
   `/sprint-execute <sprint-id>` with `04-review.md` attached.
 - `Loop back to Plan`: print blocking issue ids, append a `revision_notes` entry
-  with `phase: "review"`, `source: "review"`, and `action: "route_back"`, reset
-  repeated-issue counters, and rerun `/sprint-plan <sprint-id>`.
+  with `phase: "review"`, `source: "review"`, and `action: "route_back"`, clear
+  `meta.json.review_issue_counts`, and rerun `/sprint-plan <sprint-id>`.
 
-Track repeated blocking issues by stable issue id. If the same blocking issue id
-appears in three consecutive reviews, stop and ask the user how to proceed.
-Reset this counter only when the user changes approved direction through a gate
-revision, when review or architect routes back to Plan, on abort, or at the
-start of a new sprint.
+Track repeated blocking issues by stable issue id in
+`meta.json.review_issue_counts`. After each review, increment counts for
+blocking issue ids present in the current review and remove counts for blocking
+issue ids that are no longer present. If the same blocking issue id reaches
+three consecutive reviews, stop and ask the user how to proceed. Reset this map
+only when the user changes approved direction through a gate revision, when
+review or architect routes back to Plan, on abort, or at the start of a new
+sprint.
 Loop-backs keep `meta.json.status` as `in_progress`.
 
 ## 5. Retro

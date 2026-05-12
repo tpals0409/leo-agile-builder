@@ -11,7 +11,9 @@ define enough tooling for agents to verify their work.
 - Annotation enforcement for required file headers.
 
 Record these choices in the first sprint design if the project has not already
-documented them.
+documented them. When no annotation check exists yet, the first sprint that
+touches repo-authored source or tests should add a minimal stack-appropriate
+check or document why tooling is out of scope for that sprint.
 
 ## File Annotations
 

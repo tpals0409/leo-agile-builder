@@ -87,6 +87,9 @@ Reason: <why the PRD must change>
   commands, paths, and quoted source text unchanged.
 - Collapse layers for small features when that is simpler; state the choice.
 - Every test plan item must map to a success criterion.
+- If the project has no documented annotation check yet, include a minimal
+  stack-appropriate annotation check or CI/lint integration in the File Plan,
+  unless the sprint explicitly cannot touch tooling and records that risk.
 - Do not modify `01-prd.md`, code, glossary, or implementation notes.
 - Emit `## Work Packages` only when the design can be split into two or more
   packages with strictly disjoint `Files:` sets and each package covers a

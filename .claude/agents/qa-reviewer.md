@@ -2,7 +2,6 @@
 name: qa-reviewer
 description: QA and code reviewer agent. Writes 04-review.md without modifying code or tests.
 tools: Read, Write, Grep, Glob, Bash
-isolation: worktree
 ---
 
 # QA-Reviewer Agent
@@ -76,6 +75,10 @@ Ready to retro | Loop back to Execute | Loop back to Plan
   within the sprint. Assign a new id only for a new defect.
 - Missing Developer-owned tests for success criteria are blocking unless the
   design explicitly justified no test.
+- Missing annotation enforcement is blocking when the design required adding or
+  updating it. If the project still has no annotation check and the design
+  recorded that as an explicit tooling risk, list it as non-blocking unless it
+  violates an approved success criterion.
 - Optional follow-up tests are non-blocking and should be listed as retro action
   items.
 

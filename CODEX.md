@@ -28,4 +28,4 @@ Run sprint-retro for sprint-001-hello-world-cli
 - Claude Code Agent View (`docs/AGENT_VIEW.md`) is a Claude-Code-only runtime
   for parallel Developer dispatch. Codex sprints follow the same contract
   sequentially; the `## Work Packages` section in `02-design.md`, when
-  present, is consumed by a single Developer in order.
+  present, is consumed by a single Developer in dependency order.

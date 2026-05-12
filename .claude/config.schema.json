@@ -27,6 +27,21 @@
     },
     "roles": {
       "type": "object",
+      "required": ["pm", "architect", "developer", "qa-reviewer"],
+      "properties": {
+        "pm": {
+          "type": "string"
+        },
+        "architect": {
+          "type": "string"
+        },
+        "developer": {
+          "type": "string"
+        },
+        "qa-reviewer": {
+          "type": "string"
+        }
+      },
       "additionalProperties": {
         "type": "string"
       }
@@ -40,6 +55,34 @@
         },
         "files": {
           "type": "object",
+          "required": [
+            "prd",
+            "design",
+            "implementation",
+            "review",
+            "retro",
+            "meta"
+          ],
+          "properties": {
+            "prd": {
+              "type": "string"
+            },
+            "design": {
+              "type": "string"
+            },
+            "implementation": {
+              "type": "string"
+            },
+            "review": {
+              "type": "string"
+            },
+            "retro": {
+              "type": "string"
+            },
+            "meta": {
+              "type": "string"
+            }
+          },
           "additionalProperties": {
             "type": "string"
           }

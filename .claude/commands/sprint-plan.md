@@ -74,6 +74,10 @@ language of `meta.json.feature_request`.
 - Domain
 - Glossary additions proposed
 
+Blocking Open Questions must use stable sprint-scoped ids in the form
+`Q-001-short-title`, `Q-002-short-title`, and so on. Preserve the same id for
+the same underlying question across PRD revisions.
+
 ### 4. Hand Back
 
 Print:

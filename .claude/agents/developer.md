@@ -28,6 +28,8 @@ Implement the approved design exactly. Developer owns first-pass tests.
 - Edit only files in the approved design or assigned parallel subset.
 - Add required annotation headers to new repo-authored source, test, schema, and
   migration files.
+- Add or update the project's annotation check when the approved design includes
+  tooling for it.
 - Preserve existing annotation fields.
 - Add tests for success criteria unless the design explicitly says none are
   needed and why.
@@ -67,6 +69,11 @@ partial notes to
 above. Limit your edits to the package's `Files:` set; touching any file
 outside it is a blocking violation. The main loop merges all partial files
 into the canonical `03-implementation-notes.md`.
+
+When Agent View is unavailable and one Developer is processing Work Packages
+sequentially, preserve the package boundaries while editing. After all packages
+are complete, write the canonical `03-implementation-notes.md` directly unless
+the main loop explicitly asked for partial notes.
 
 ## Rules
 

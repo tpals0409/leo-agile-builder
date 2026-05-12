@@ -53,7 +53,7 @@ Write `.claude/state/sprints/<sprint-id>/01-prd.md`:
 
 ## Open Questions
 ### Blocking
-- ...
+- `Q-001-short-title` — <question>
 ### Deferred
 - ...
 
@@ -77,6 +77,9 @@ Write human-readable PRD text in `meta.json.language`. If the code is
 
 - If scope is ambiguous and would affect implementation, put it in
   `Open Questions -> Blocking`.
+- Give each blocking Open Question a stable sprint-scoped id in the form
+  `Q-001-short-title`, `Q-002-short-title`, and so on. Preserve the same id for
+  the same underlying question across PRD revisions.
 - If a proposed glossary term is needed to explain the PRD, use it here and
   list it under `Glossary Additions Proposed`.
 - Keep success criteria testable.

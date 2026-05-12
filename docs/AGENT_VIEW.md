@@ -21,9 +21,9 @@ View; Codex sprints stay sequential.
   inside the dashboard, runs the named subagent (`pm`, `architect`,
   `developer`, `qa-reviewer`) as the session's **main agent**, with its full
   frontmatter applied.
-- The `developer` and `qa-reviewer` agents in this template are declared with
-  `isolation: worktree`, so every background dispatch of them lands in its own
-  `.claude/worktrees/<id>/` checkout. Parallel writers cannot collide.
+- The `developer` agent in this template is declared with `isolation: worktree`,
+  so every background dispatch lands in its own `.claude/worktrees/<id>/`
+  checkout. Parallel writers cannot collide.
 - Any question the agent asks the user surfaces as a `Needs input` row in the
   dashboard. The user answers from the peek panel (`Space`) without attaching.
 
