@@ -72,15 +72,18 @@ Run this after Gate 1 (PRD approval). It mirrors the dispatch recipe in
 4. **Monitor.** Open `claude agents`. Sessions with state `Needs input` are
    waiting on you. Press `Space` to peek and answer; press `Enter` to attach
    if you need the full conversation.
-5. **Merge partial notes.** When every WP session reaches `Completed`, the
-   main loop (in your interactive `/sprint` session, or run by you manually)
+5. **Merge worktrees.** Each session edited its own
+   `.claude/worktrees/<id>/`. Move the changes into the main checkout before
+   you delete the session — see *Sharp edges* below. Each session's
+   `03-impl-WP-k.md` is part of its worktree's diff, so this step also brings
+   the partial notes into the main checkout.
+6. **Merge partial notes.** Once every worktree has been merged, the main
+   loop (in your interactive `/sprint` session, or run by you manually)
    merges every `03-impl-WP-k.md` into the canonical
    `03-implementation-notes.md`. The merge rules are in
    `.claude/commands/sprint-execute.md`. Partial files stay on disk for
-   traceability.
-6. **Merge worktrees.** Each session edited its own
-   `.claude/worktrees/<id>/`. Move the changes into the main checkout before
-   you delete the session — see *Sharp edges* below.
+   traceability. If a WP session failed, do not auto-merge any worktree;
+   bring the failure to the user at Gate 2.
 7. **Delete the WP sessions.** In `claude agents`, select each completed WP
    row and press `Ctrl+X` twice within two seconds, or run
    `claude rm <id>` from the shell. The worktree is removed with the

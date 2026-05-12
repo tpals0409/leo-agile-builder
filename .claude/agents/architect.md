@@ -94,3 +94,7 @@ Reason: <why the PRD must change>
   loop runs Developer sequentially.
 - Every file in `## Work Packages` must also appear in `## File Plan`; the
   packages partition the File Plan, they do not extend it.
+- Shared output files that the design requires but that no single package owns
+  exclusively (most commonly `docs/glossary.md`) must be assigned to exactly
+  one WP's `Files:` set. If a downstream package needs glossary terms added by
+  an earlier WP, express the ordering via `Depends on:`.

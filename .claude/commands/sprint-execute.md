@@ -81,8 +81,12 @@ background Developer session per package and merges their partial notes:
    reaches `Completed`.
 4. The main loop watches each session through `claude agents` (or
    `claude logs <id>` from the shell), answering `Needs input` rows.
-5. When every WP session reaches `Completed`, the main loop merges all
-   `03-impl-WP-k.md` files into the canonical
+5. When every WP session reaches `Completed`, the main loop merges each
+   worktree's changes back into the main checkout before reading any partial
+   notes. The recipe and sharp edges live in `docs/AGENT_VIEW.md`. After this
+   step, every `03-impl-WP-k.md` exists in the main checkout because each
+   partial notes file is part of its worktree's diff.
+6. The main loop then merges every `03-impl-WP-k.md` into the canonical
    `.claude/state/sprints/<sprint-id>/03-implementation-notes.md`:
    - `Files changed` lists are unioned and deduplicated.
    - `Tests added` and `Verification performed` are unioned.
@@ -90,11 +94,24 @@ background Developer session per package and merges their partial notes:
      emitting `WP-k` prefixed to each entry.
    - The canonical notes file is the only writer of
      `03-implementation-notes.md`; partial files stay on disk for traceability.
-6. The main loop then merges each worktree's changes back into the main
-   checkout. The recipe and sharp edges live in `docs/AGENT_VIEW.md`.
 7. If any WP session ends in `Failed`, edits files outside its package's
    `Files:` set, or skips a declared `Acceptance check:`, treat it as the
    existing "Developer edits files outside its assignment" violation and stop.
+   Do not auto-merge any worktree on failure; leave successful sibling
+   worktrees intact for inspection and surface the failure at Gate 2 so the
+   user can choose to retry the failed WP, abort, or merge selectively.
+8. If a Developer session reports a blocking design defect (e.g., writes a
+   missing-decision note under `Deviations from design`), the main loop stops
+   dispatching new WP sessions and waits for in-flight siblings to reach a
+   quiescent state. It then surfaces the defect plus every partial note at
+   Gate 2 so the user can choose `revise` (re-route Execute through Architect
+   for redesign) or `abort`. Sibling worktrees are not merged when the user
+   chooses `revise`.
+9. Shared output files that the design requires but that do not belong to a
+   single WP's exclusive concern (most commonly `docs/glossary.md`) must be
+   assigned by Architect to exactly one WP's `Files:` set. If two worktrees
+   modified the same file outside any declared `Files:` assignment, treat the
+   collision as a blocking violation and stop.
 
 ### 3. Hand Back
 
